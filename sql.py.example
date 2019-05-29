@@ -1,0 +1,5 @@
+dbHost      = 'host'
+dbPort      = 3306
+dbUser      = 'user'
+dbPassword  = 'password'
+dbName      = 'name'
