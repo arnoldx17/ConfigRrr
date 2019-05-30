@@ -104,6 +104,5 @@ def routerboard_details(id):
     return render_template('routerboard_details.html', routerboardDetails=routerboardDetails)
 
 
-
 if __name__ == "__main__":
     app.run(debug=True)
