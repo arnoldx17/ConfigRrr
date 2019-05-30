@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pymysql
 import sql
 import mikrotikApi
+import datetime
 
 app = Flask(__name__)
 
@@ -74,25 +75,35 @@ def routerboard_details(id):
             password = routerboardDetails[0][5]
             host = routerboardDetails[0][2]
 
-            details = mikrotikApi.getInfo(username, password, host)
+            try:
+                details = mikrotikApi.getInfo(username, password, host)
 
-            cur.execute(""" UPDATE `routerboards` SET
-                            `identity` = '""" + details[0] + """',
-                            `routerosversion` = '""" + details[2] + """',
-                            `boardname` = '""" + details[3] + """',
-                            `architecturename` = '""" + details[4] + """',
-                            `currentfirmware` = '""" + details[5] + """',
-                            `model` = '""" + details[6] + """',
-                            `serialnumber` = '""" + details[7] + """'
-                            WHERE `routerboards`.`id` = """ + id + """;""")
-            cur.execute(
-                "SELECT * FROM `routerboards` WHERE id = " + id + "")
-            routerboardDetails = cur.fetchall()
+                apiTime = datetime.datetime.now()
+                apiTime = apiTime.strftime("%Y-%m-%d %I:%M:%S")
+
+                cur.execute(""" UPDATE `routerboards` SET
+                                `identity` = '""" + details[0] + """',
+                                `routerosversion` = '""" + details[2] + """',
+                                `boardname` = '""" + details[3] + """',
+                                `architecturename` = '""" + details[4] + """',
+                                `currentfirmware` = '""" + details[5] + """',
+                                `model` = '""" + details[6] + """',
+                                `serialnumber` = '""" + details[7] + """',
+                                `apiok` = '1',
+                                `apitime` = '""" + apiTime + """'
+                                WHERE `routerboards`.`id` = """ + id + """;""")
+                cur.execute(
+                    "SELECT * FROM `routerboards` WHERE id = " + id + "")
+                routerboardDetails = cur.fetchall()
+            except Exception as e:
+                print(e)
 
     cur.close()
     conn.close()
 
     return render_template('routerboard_details.html', routerboardDetails=routerboardDetails)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
