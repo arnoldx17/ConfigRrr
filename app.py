@@ -5,7 +5,8 @@ import mikrotikApi
 
 app = Flask(__name__)
 
-app.secret_key = 'monkey'
+app.secret_key = 'randomstring'
+
 
 @app.route('/')
 def index():
@@ -92,3 +93,6 @@ def routerboard_details(id):
     conn.close()
 
     return render_template('routerboard_details.html', routerboardDetails=routerboardDetails)
+
+if __name__ == "__main__":
+    app.run(debug=True)
