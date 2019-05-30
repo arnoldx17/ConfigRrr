@@ -11,7 +11,8 @@ CREATE TABLE `routerboards` (
   `currentfirmware` varchar(30) COLLATE utf8_bin DEFAULT '-',
   `model` varchar(30) COLLATE utf8_bin DEFAULT '-',
   `serialnumber` varchar(30) COLLATE utf8_bin DEFAULT '-',
-  `apiok` tinyint(1) NOT NULL DEFAULT '0'
+  `apiok` tinyint(1) NOT NULL DEFAULT '0',
+  `apitime` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 ALTER TABLE `routerboards`
