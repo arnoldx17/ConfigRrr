@@ -12,12 +12,14 @@ CREATE TABLE `routerboards` (
   `model` varchar(30) COLLATE utf8_bin DEFAULT '-',
   `serialnumber` varchar(30) COLLATE utf8_bin DEFAULT '-',
   `apiok` tinyint(1) NOT NULL DEFAULT '0',
-  `apitime` datetime NOT NULL
+  `apitime` datetime DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 ALTER TABLE `routerboards`
   ADD PRIMARY KEY (`id`);
 
+
 ALTER TABLE `routerboards`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
