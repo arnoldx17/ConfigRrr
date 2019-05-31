@@ -14,7 +14,6 @@ def index():
     connection = pymysql.connect(host=sql.dbHost, port=sql.dbPort,
                                  user=sql.dbUser, passwd=sql.dbPassword, db=sql.dbName)
     cur = connection.cursor(pymysql.cursors.DictCursor)
-    #cur.execute("SELECT COUNT(*) AS routerboardCount FROM routerboards")
     cur.execute(""" SELECT
                         COUNT(*) AS routerboardCount,
                         COUNT(CASE WHEN `apiok` LIKE '1' THEN 1 END) AS apiok,
