@@ -9,16 +9,24 @@ def getInfo(username, password, host):
     identity_info = api(cmd='/system/identity/print')
     routerboard_info = api(cmd='/system/routerboard/print')
 
-    RbIdentity = identity_info[0]['name']
+    rbIdentity = identity_info[0]['name']
     uptime = resource_info[0]['uptime']
-    RouterOSversion = resource_info[0]['version']
+    routerOsVersion = resource_info[0]['version']
     boardName = resource_info[0]['board-name']
     architectureName = resource_info[0]['architecture-name']
     currentFirmware = routerboard_info[0]['current-firmware']
     model = routerboard_info[0]['model']
     serialNumber = routerboard_info[0]['serial-number']
 
-    details = [RbIdentity, uptime, RouterOSversion, boardName,
-               architectureName, currentFirmware, model, serialNumber]
+    rbDetails = {
+        "rbIdentity" : rbIdentity,
+        "uptime" : uptime,
+        "routerOsVersion" : routerOsVersion,
+        "boardName" : boardName,
+        "architectureName" : architectureName,
+        "currentFirmware" : currentFirmware,
+        "model" : model,
+        "serialNumber" : serialNumber
+    }
 
-    return details
+    return rbDetails
