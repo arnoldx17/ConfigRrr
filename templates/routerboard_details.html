@@ -7,7 +7,13 @@
 <div class="media position-relative">
   <div class="media-body">
     <h5 class="mt-4">
-      <h1 class="display-4">{{detail[1]}}</h1>
+      <h1 class="display-4">{{detail[1]}}
+      {% if detail[12] is eq(1) %}
+        <span class="badge badge-pill badge-success">API OK</span>
+        {% else %}
+        <span class="badge badge-pill badge-danger">API</span>
+       {% endif %}
+      </h1>
       <hr>
     </h5>
     <ul class="detail-list">
@@ -46,12 +52,21 @@
     </ul>
     <hr>
   </div>
-  <img src="{{url_for('static', filename=detail[10]+'.jpg', width=100)}}" />
+  <img src="{{url_for('static', filename='img/routerboards/' + detail[10] + '.jpg', width=100)}}" />
 </div>
+
+<div class="container">
+  <form action="" method="POST">
+    <button type="submit" name="submit" value="reloadApiButton" class="btn btn-warning">Reload API</button>
+  </form>
+  <p class="font-weight-bold">Api last connected, and data reloaded: {{detail[13]}}</p>
+</div>
+
 
 <form action="" method="POST">
   <button id="reloadApiButton" type="submit" name="submit" value="reloadApiButton" class="btn btn-warning">Reload API</button>
 </form>
+
 
 {% endfor %}
 

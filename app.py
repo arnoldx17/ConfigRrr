@@ -2,30 +2,35 @@ from flask import Flask, render_template, request
 import pymysql
 import sql
 import mikrotikApi
+import datetime
 
 app = Flask(__name__)
 
-app.secret_key = 'monkey'
+app.secret_key = 'randomstring'
+
 
 @app.route('/')
 def index():
-    conn = pymysql.connect(host=sql.dbHost, port=sql.dbPort,
-                           user=sql.dbUser, passwd=sql.dbPassword, db=sql.dbName)
-    cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM routerboards")
-    routerboardCount = cur.fetchall()
+    connection = pymysql.connect(host=sql.dbHost, port=sql.dbPort,
+                                 user=sql.dbUser, passwd=sql.dbPassword, db=sql.dbName)
+    cur = connection.cursor(pymysql.cursors.DictCursor)
+    cur.execute(""" SELECT
+                        COUNT(*) AS routerboardCount,
+                        COUNT(CASE WHEN `apiok` LIKE '1' THEN 1 END) AS apiok,
+                        COUNT(CASE WHEN `apiok` LIKE '0' THEN 1 END) AS apinotok
+                    FROM `routerboards`; """)
+    data = cur.fetchall()
     cur.close()
-    conn.close()
-    routerboardCount = routerboardCount[0][0]
-    return render_template('index.html', routerboardCount=routerboardCount)
+    connection.close()
+    return render_template('index.html', data=data)
 
 
 @app.route('/routerboards', methods=['POST', 'GET'])
 def routerboards():
 
-    conn = pymysql.connect(host=sql.dbHost, port=sql.dbPort,
-                           user=sql.dbUser, passwd=sql.dbPassword, db=sql.dbName)
-    cur = conn.cursor()
+    connection = pymysql.connect(host=sql.dbHost, port=sql.dbPort,
+                                 user=sql.dbUser, passwd=sql.dbPassword, db=sql.dbName)
+    cur = connection.cursor()
 
     if request.method == 'POST':
 
@@ -50,7 +55,7 @@ def routerboards():
     cur.execute("SELECT id, identity, ipaddress, locality FROM routerboards")
     routerboards = cur.fetchall()
     cur.close()
-    conn.close()
+    connection.close()
 
     return render_template('routerboards.html', routerboards=routerboards)
 
@@ -58,9 +63,9 @@ def routerboards():
 @app.route('/routerboards/id/<id>', methods=['POST', 'GET'])
 def routerboard_details(id):
 
-    conn = pymysql.connect(host=sql.dbHost, port=sql.dbPort,
-                           user=sql.dbUser, passwd=sql.dbPassword, db=sql.dbName)
-    cur = conn.cursor()
+    connection = pymysql.connect(host=sql.dbHost, port=sql.dbPort,
+                                 user=sql.dbUser, passwd=sql.dbPassword, db=sql.dbName)
+    cur = connection.cursor()
     cur.execute(
         "SELECT * FROM `routerboards` WHERE id = " + id + "")
     routerboardDetails = cur.fetchall()
@@ -73,22 +78,34 @@ def routerboard_details(id):
             password = routerboardDetails[0][5]
             host = routerboardDetails[0][2]
 
-            details = mikrotikApi.getInfo(username, password, host)
+            try:
+                rbDetails = mikrotikApi.getInfo(username, password, host)
 
-            cur.execute(""" UPDATE `routerboards` SET
-                            `identity` = '""" + details[0] + """',
-                            `routerosversion` = '""" + details[2] + """',
-                            `boardname` = '""" + details[3] + """',
-                            `architecturename` = '""" + details[4] + """',
-                            `currentfirmware` = '""" + details[5] + """',
-                            `model` = '""" + details[6] + """',
-                            `serialnumber` = '""" + details[7] + """'
-                            WHERE `routerboards`.`id` = """ + id + """;""")
-            cur.execute(
-                "SELECT * FROM `routerboards` WHERE id = " + id + "")
-            routerboardDetails = cur.fetchall()
+                apiTime = datetime.datetime.now()
+                apiTime = apiTime.strftime("%Y-%m-%d %I:%M:%S")
+
+                cur.execute(""" UPDATE `routerboards` SET
+                                `identity` = '""" + rbDetails["rbIdentity"] + """',
+                                `routerosversion` = '""" + rbDetails["routerOsVersion"] + """',
+                                `boardname` = '""" + rbDetails["boardName"] + """',
+                                `architecturename` = '""" + rbDetails["architectureName"] + """',
+                                `currentfirmware` = '""" + rbDetails["currentFirmware"] + """',
+                                `model` = '""" + rbDetails["model"] + """',
+                                `serialnumber` = '""" + rbDetails["serialNumber"] + """',
+                                `apiok` = '1',
+                                `apitime` = '""" + apiTime + """'
+                                WHERE `routerboards`.`id` = """ + id + """;""")
+                cur.execute(
+                    "SELECT * FROM `routerboards` WHERE id = " + id + "")
+                routerboardDetails = cur.fetchall()
+            except Exception as e:
+                print(e)
 
     cur.close()
-    conn.close()
+    connection.close()
 
     return render_template('routerboard_details.html', routerboardDetails=routerboardDetails)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
