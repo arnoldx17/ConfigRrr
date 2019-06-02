@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<p class="h1">ConfigRrr</p>
-<p class="font-weight-bold">There are <a href="{{ url_for('routerboards') }}" class="text-success text-decoration-none">{{routerboardCount}}</a> routerboards in database!</p>
-
+<div class="container-home"><h1>ConfigRrr</h1>
+<p class="font-weight-bold">There are <a href="{{ url_for('routerboards') }}" class="text-success text-decoration-none">{{routerboardCount}}</a> routerboards in the database!</p>
+</div>
 {% endblock %}
