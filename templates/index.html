@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div class="container-home"><h1>ConfigRrr</h1>
-<p class="font-weight-bold">There are <a href="{{ url_for('routerboards') }}" class="text-success text-decoration-none">{{data[0]['routerboardCount']}}</a> routerboards in the database!</p>
-<div class="p-3 mb-2 bg-success text-white">Routerboards reachable with API: {{data[0]['apiok']}}</div>
-<div class="p-3 mb-2 bg-danger text-white">Routerboards NOT reachable with API: {{data[0]['apinotok']}}</div>
+<div class="container-home">
+  <h1>ConfigRrr</h1>
+  <p class="font-weight-bold">There are <a href="{{ url_for('routerboards') }}" class="text-success text-decoration-none">{{data[0]['routerboardCount']}}</a> routerboards in the database!</p>
+  <div class="p-3 mb-2 bg-success text-white">Routerboards reachable with API: {{data[0]['apiok']}}</div>
+  <div class="p-3 mb-2 bg-danger text-white">Routerboards NOT reachable with API: {{data[0]['apinotok']}}</div>
 </div>
 
 {% endblock %}

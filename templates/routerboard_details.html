@@ -2,66 +2,66 @@
 {% block content %}
 <div class="container">
 
-{% for detail in routerboardDetails %}
+  {% for detail in routerboardDetails %}
 
-<div class="media position-relative">
-  <div class="media-body">
-    <h5 class="mt-4">
-      <h1 class="display-4">{{detail[1]}}
-      {% if detail[12] is eq(1) %}
-        <span class="badge badge-pill badge-success">API OK</span>
-        {% else %}
-        <span class="badge badge-pill badge-danger">API</span>
-       {% endif %}
-      </h1>
+  <div class="media position-relative">
+    <div class="media-body">
+      <h5 class="mt-4">
+        <h1 class="display-4">{{detail[1]}}
+          {% if detail[12] is eq(1) %}
+          <span class="badge badge-pill badge-success">API OK</span>
+          {% else %}
+          <span class="badge badge-pill badge-danger">API</span>
+          {% endif %}
+        </h1>
+        <hr>
+      </h5>
+      <ul class="detail-list">
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/loc.png') }}" alt="Locality">
+          <p class="h5"><strong>Locality :</strong> {{detail[3]}}</p>
+        </li>
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/ip.png') }}" alt="Locality">
+          <p class="h5"><strong>IP :</strong> {{detail[2]}}</p>
+        </li>
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/name.png') }}" alt="Locality">
+          <p class="h5"><strong>Board Name :</strong> {{detail[7]}}</p>
+        </li>
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/model.png') }}" alt="Locality">
+          <p class="h5"><strong>Model :</strong> {{detail[10]}}</p>
+        </li>
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/archi.png') }}" alt="Locality">
+          <p class="h5"><strong>Architecture :</strong> {{detail[8]}}</p>
+        </li>
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/os.png') }}" alt="Locality">
+          <p class="h5"><strong>RouterOS version :</strong> {{detail[6]}}</p>
+        </li>
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/firmware.png') }}" alt="Locality">
+          <p class="h5"><strong>Firmware version :</strong> {{detail[9]}}</p>
+        </li>
+        <li class="detail-list-item">
+          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/sn.png') }}" alt="Locality">
+          <p class="h5"><strong>Serial number :</strong> {{detail[11]}}</p>
+        </li>
+      </ul>
       <hr>
-    </h5>
-    <ul class="detail-list">
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/loc.png') }}" alt="Locality">
-        <p class="h5"><strong>Locality :</strong> {{detail[3]}}</p>
-      </li>
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/ip.png') }}" alt="Locality">
-        <p class="h5"><strong>IP :</strong> {{detail[2]}}</p>
-      </li>
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/name.png') }}" alt="Locality">
-        <p class="h5"><strong>Board Name :</strong> {{detail[7]}}</p>
-      </li>
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/model.png') }}" alt="Locality">
-        <p class="h5"><strong>Model :</strong> {{detail[10]}}</p>
-      </li>
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/archi.png') }}" alt="Locality">
-        <p class="h5"><strong>Architecture :</strong> {{detail[8]}}</p>
-      </li>
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/os.png') }}" alt="Locality">
-        <p class="h5"><strong>RouterOS version :</strong> {{detail[6]}}</p>
-      </li>
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/firmware.png') }}" alt="Locality">
-        <p class="h5"><strong>Firmware version :</strong> {{detail[9]}}</p>
-      </li>
-      <li class="detail-list-item">
-        <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/sn.png') }}" alt="Locality">
-        <p class="h5"><strong>Serial number :</strong> {{detail[11]}}</p>
-      </li>
-    </ul>
-    <hr>
+    </div>
+    <img src="{{url_for('static', filename='img/routerboards/' + detail[10] + '.jpg', width=100)}}" />
   </div>
-  <img src="{{url_for('static', filename='img/routerboards/' + detail[10] + '.jpg', width=100)}}" />
-</div>
 
   <form action="" method="POST">
-    <button id="reloadApiButton"  type="submit" name="submit" value="reloadApiButton" class="btn btn-warning">Reload API</button>
+    <button id="reloadApiButton" type="submit" name="submit" value="reloadApiButton" class="btn btn-warning">Reload API</button>
   </form>
   <p class="font-weight-bold">Api last connected, and data reloaded: {{detail[13]}}</p>
 
 
-{% endfor %}
+  {% endfor %}
 
 </div>
 {% endblock %}
