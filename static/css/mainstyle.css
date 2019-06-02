@@ -73,6 +73,7 @@ body{
 }
 .container-home .font-weight-bold{
   font-size: 24px;
+  font-weight: lighter !important;
   color: WhiteSmoke;
 }
 #reloadApiButton{
