@@ -1,0 +1,19 @@
+*{
+  font-family: 'Ubuntu','Viga', sans-serif;
+  font-weight: 100;
+}
+.navbar-brand{
+  font-family: 'Michroma' , sans-serif;
+}
+.btn-success{
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.badge{
+  font-size: 95%;
+  font-weight: 500;
+  vertical-align: text-top;
+}
+.column{
+  font-weight: bold;
+}
