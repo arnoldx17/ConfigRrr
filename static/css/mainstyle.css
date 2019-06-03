@@ -33,6 +33,23 @@ body{
 }
 
 /*routerboardDetails.html*/
+.badge-pill{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 50%;
+  font-weight: normal;
+}
+#rbimage{
+  width: 50%;
+  padding-top: 40px;
+  display: inline-flex;
+  float:right;
+}
+.container .font-weight-bold{
+  margin-bottom: 0;
+}
 .mb-5{
   margin-bottom: 5px !important;
 }
