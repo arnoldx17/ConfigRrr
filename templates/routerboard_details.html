@@ -18,39 +18,39 @@
       </h5>
       <ul class="detail-list">
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/loc.png') }}" alt="Locality">
-          <p class="h5"><strong>Locality :</strong> {{detail[3]}}</p>
+          <i class="detail-list-ico fas fa-map-marker-alt fa-2x"></i>
+          <p class="h5"><strong>Locality :</strong><br> {{detail[3]}}</p>
         </li>
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/ip.png') }}" alt="Locality">
-          <p class="h5"><strong>IP :</strong> {{detail[2]}}</p>
+          <i class="detail-list-ico far fa-clipboard fa-2x"></i>
+          <p class="h5"><strong>IP :</strong><br> {{detail[2]}}</p>
         </li>
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/name.png') }}" alt="Locality">
-          <p class="h5"><strong>Board Name :</strong> {{detail[7]}}</p>
+          <i class="detail-list-ico fas fa-signature fa-2x"></i>
+          <p class="h5"><strong>Board Name :</strong><br> {{detail[7]}}</p>
         </li>
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/model.png') }}" alt="Locality">
-          <p class="h5"><strong>Model :</strong> {{detail[10]}}</p>
+          <i class="detail-list-ico far fa-hdd fa-2x"></i>
+          <p class="h5"><strong>Model :</strong><br> {{detail[10]}}</p>
         </li>
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/archi.png') }}" alt="Locality">
-          <p class="h5"><strong>Architecture :</strong> {{detail[8]}}</p>
+          <i class="detail-list-ico fas fa-puzzle-piece fa-2x"></i>
+          <p class="h5"><strong>Architecture :</strong><br> {{detail[8]}}</p>
         </li>
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/os.png') }}" alt="Locality">
-          <p class="h5"><strong>RouterOS version :</strong> {{detail[6]}}</p>
+          <i class="detail-list-ico fab fa-buromobelexperte fa-2x"></i>
+          <p class="h5"><strong>RouterOS version :</strong><br> {{detail[6]}}</p>
         </li>
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/firmware.png') }}" alt="Locality">
-          <p class="h5"><strong>Firmware version :</strong> {{detail[9]}}</p>
+          <i class="detail-list-ico fas fa-cogs fa-2x"></i>
+          <p class="h5"><strong>Firmware version :</strong><br> {{detail[9]}}</p>
         </li>
         <li class="detail-list-item">
-          <img class="detail-list-ico" src="{{url_for('static', filename='css/icons/sn.png') }}" alt="Locality">
-          <p class="h5"><strong>Serial number :</strong> {{detail[11]}}</p>
+          <i class="detail-list-ico fas fa-barcode fa-2x"></i>
+          <p class="h5"><strong>Serial number :</strong><br> {{detail[11]}}</p>
         </li>
       </ul>
-      <img id="rbimage" src="{{url_for('static', filename='img/routerboards/RB760iGS.jpg')}}" />
+      <img id="rbimage" src="{{url_for('static', filename='img/routerboards/750UP.jpg')}}" />
       <hr>
     </div>
   </div>
@@ -58,6 +58,8 @@
   <form action="" method="POST">
     <button id="reloadApiButton" type="submit" name="submit" value="reloadApiButton" class="btn btn-warning">Reload API</button>
   </form>
+
+  <hr>
   <p class="font-weight-bold">Api last connected, and data reloaded: {{detail[13]}}</p>
 
 
