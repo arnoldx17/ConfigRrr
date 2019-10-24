@@ -1,6 +1,20 @@
+/* layout.html*/
 *{
   font-family: 'Ubuntu','Viga', sans-serif;
   font-weight: 100;
+}
+body{
+  background-image: url("/static/css/background/blurry-background.jpg");
+}
+.container{
+  margin-top: 15px;
+  padding-bottom: 15px;
+  background-color: white;
+  overflow-y: auto;
+}
+.container h1{
+  font-family: 'Michroma' , sans-serif;
+  margin-top: 20px;
 }
 .navbar-brand{
   font-family: 'Michroma' , sans-serif;
@@ -16,4 +30,84 @@
 }
 .column{
   font-weight: bold;
+}
+
+/*routerboardDetails.html*/
+.badge-pill{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 50%;
+  font-weight: normal;
+}
+#rbimage{
+  width: 30%;
+  margin:50px;
+  margin-right: 10%;
+  display: inline-block;
+  float: right;
+
+}
+.container .font-weight-bold{
+  margin-bottom: 0;
+  font-weight: normal !important;
+}
+.mb-5{
+  margin-bottom: 5px !important;
+}
+.display-4{
+  font-family: 'Michroma' , sans-serif;
+  font-style: bold;
+  margin-bottom: 30px;
+  padding-left: 40px;
+}
+.detail-list{
+  list-style: none;
+  display:inline-block;
+  padding-inline-start:0px;
+  width: 50%;
+  padding-right: 10px;
+}
+.detail-list-item{
+  display: flex;
+  font-weight: 100;
+}
+.detail-list-item strong{
+  font-weight: normal;
+}
+.detail-list-ico{
+  margin-right: 10px;
+  padding-top: 5px;
+  text-align: center;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+}
+.h5{
+ font-size: 18px;
+ margin-bottom: 10px;
+}
+
+/*home/default*/
+.container-home{
+  margin: 25%;
+  margin-bottom: 0;
+}
+.container-home h1{
+  border-bottom: 2px solid lightgrey;
+  font-family: 'Michroma' , sans-serif;
+  letter-spacing: 20px;
+  color: WhiteSmoke;
+}
+.container-home .font-weight-bold{
+  font-size: 24px;
+  font-weight: lighter !important;
+  color: WhiteSmoke;
+}
+#reloadApiButton{
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
 }
